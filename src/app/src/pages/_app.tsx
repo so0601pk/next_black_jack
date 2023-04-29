@@ -1,6 +1,11 @@
-import '@/styles/globals.css'
+// import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
+import 'tailwindcss/tailwind.css'
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <div className="bg-lime-500 h-screen">
+      <Component {...pageProps} />
+    </div>
+  )
 }

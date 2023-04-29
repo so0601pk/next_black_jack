@@ -1,5 +1,3 @@
 {
-  "mark": "spade",
-  "score": "11",
-  "image": "/Users/so0601pk/Documents/images/tramp/card_back.png"
+  "image": "/src/app/public/tramp/card_back.png"
 }
