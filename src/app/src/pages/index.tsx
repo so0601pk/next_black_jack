@@ -8,8 +8,9 @@ const cardBackImageUrl = cardBack.image
 export default function Home() {
   return (
     <div>
-      <div className="flex justify-center">
-        <div className="mr-8 flex space-x-4">
+      <div className="text-center text-2xl font-bold">相手の手札</div>
+      <div className="flex justify-center my-4">
+        <div className="flex space-x-4">
           <div>
             <button className="bg-violet-500 text-white py-6 px-8 rounded">
               ゲームスタート
@@ -21,11 +22,12 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div>
-          <Image src={cardBackImageUrl} width={500} height={500} />
-          {/* <img src= alt="" /> */}
-        </div>
       </div>
+      <div className="flex justify-center my-4">
+        <Image src={cardBackImageUrl} width={150} height={150} alt="" />
+        {/* <img src= alt="" /> */}
+      </div>
+      <div className="text-center text-2xl font-bold">自分の手札</div>
     </div>
   )
 }

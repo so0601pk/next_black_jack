@@ -1,3 +1,4 @@
 {
-  "image": "/src/app/public/tramp/card_back.png"
+  "image": "/../public/tramp/card_back.png",
+  "about": "card_back"
 }
