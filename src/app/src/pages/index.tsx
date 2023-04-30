@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google'
 import cardBack from '@/json/card_back.json'
 import Player from '@/components/player'
 
-// const inter = Inter({ subsets: ['latin'] })
 const cardBackImageUrl = cardBack.image
 
 export default function Home() {
