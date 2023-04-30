@@ -4,7 +4,7 @@ import 'tailwindcss/tailwind.css'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className="bg-lime-500 h-screen">
+    <div className="bg-lime-500">
       <Component {...pageProps} />
     </div>
   )
