@@ -1,20 +1,24 @@
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import cards from '@/json/cards.json'
 import cardBack from '@/json/card_back.json'
 import Player from '@/components/player'
+import { useState, useEffect } from 'react'
 
 const cardBackImageUrl = cardBack.image
 
 export default function Home() {
+  const [shuffledCards, setShuffledCards] = useState(0)
+
   return (
     <div>
       <div className="pt-18">
         <div>
           <div className="text-center text-2xl font-bold">相手の手札</div>
           <Player />
-          <div className="text-center mt-4">現在の合計値（自分）:{}</div>
+          <div className="text-center mt-4">現在の合計値（相手）:{}</div>
           <div className="text-center mt-4 text-xl">勝ち</div>
         </div>
+
         <div className="flex justify-center mt-4">
           <div className="flex space-x-4">
             <div>
@@ -33,6 +37,7 @@ export default function Home() {
           <Image src={cardBackImageUrl} width={80} height={80} alt="" />
           {/* <img src= alt="" /> */}
         </div>
+
         <div className="mt-4">
           <div className="text-center text-2xl font-bold">自分の手札</div>
           <Player />
