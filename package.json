@@ -6,5 +6,8 @@
     "babel-jest": "^29.5.0",
     "jest": "^29.5.0",
     "react-test-renderer": "^18.2.0"
+  },
+  "dependencies": {
+    "next": "^13.4.3"
   }
 }
