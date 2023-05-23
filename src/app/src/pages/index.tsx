@@ -7,7 +7,36 @@ import { useState, useEffect } from 'react'
 const cardBackImageUrl = cardBack.image
 
 export default function Home() {
-  const [shuffledCards, setShuffledCards] = useState(0)
+  // シャッフルされたカードの状態を保持
+  const [shuffledCards, setShuffledCards] = useState<
+    { mark: string; score: number; image: string }[]
+  >([])
+  // 自分の手札の状態を保持
+  const [myHands, setMyHands] = useState<
+    { mark: string; score: number; image: string }[]
+  >([])
+  // 対戦相手の手札の状態を保持
+  const [oppHands, setOppHands] = useState<
+    { mark: string; score: number; image: string }[]
+  >([])
+
+  useEffect(() => {
+    const drowCards = (who: string) => {
+      const drawnCards = shuffledCards.splice(0, 2)
+      if (who === 'myHands') {
+        setMyHands(drawnCards)
+        setShuffledCards(shuffledCards)
+      } else {
+        setOppHands(drawnCards)
+        setShuffledCards(shuffledCards)
+      }
+    }
+    const unshuffledCards = cards
+    setShuffledCards(unshuffledCards.sort(() => Math.random() - 0.5))
+    // お互いにカードを山札から２枚ずつ引く
+    drowCards('myHands')
+    drowCards('oppHands')
+  }, [shuffledCards])
 
   return (
     <div>
