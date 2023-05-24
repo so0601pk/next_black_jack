@@ -20,7 +20,7 @@ export default function Home() {
     { mark: string; score: number; image: string }[]
   >([])
 
-  useEffect(() => {
+  const startGame = () => {
     const drowCards = (who: string) => {
       const drawnCards = shuffledCards.splice(0, 2)
       if (who === 'myHands') {
@@ -37,7 +37,11 @@ export default function Home() {
     // お互いにカードを山札から２枚ずつ引く
     drowCards('myHands')
     drowCards('oppHands')
-  }, [])
+  }
+
+  const resetGame = () => {
+    window.location.reload()
+  }
 
   return (
     <div>
@@ -52,12 +56,18 @@ export default function Home() {
         <div className="flex justify-center mt-4">
           <div className="flex space-x-4">
             <div>
-              <button className="bg-violet-500 text-white py-6 px-8 rounded">
+              <button
+                className="bg-violet-500 text-white py-6 px-8 rounded"
+                onClick={startGame}
+              >
                 ゲームスタート
               </button>
             </div>
             <div>
-              <button className="bg-violet-500 text-white py-6 px-14 rounded">
+              <button
+                className="bg-violet-500 text-white py-6 px-14 rounded"
+                onClick={resetGame}
+              >
                 リセット
               </button>
             </div>
@@ -65,7 +75,6 @@ export default function Home() {
         </div>
         <div className="flex justify-center mt-4">
           <Image src={cardBackImageUrl} width={80} height={80} alt="" />
-          {/* <img src= alt="" /> */}
         </div>
 
         <div className="mt-4">

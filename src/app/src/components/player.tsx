@@ -10,7 +10,6 @@ interface cardBackProps {
 }
 
 const Player = ({ handInfos }: cardBackProps) => {
-  // console.log(handInfos)
   return (
     <div>
       <div className="flex justify-center mt-4">
