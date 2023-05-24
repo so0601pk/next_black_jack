@@ -32,18 +32,19 @@ export default function Home() {
       }
     }
     const unshuffledCards = cards
-    setShuffledCards(unshuffledCards.sort(() => Math.random() - 0.5))
+    const shuffledCards = unshuffledCards.sort(() => Math.random() - 0.5)
+    setShuffledCards(shuffledCards)
     // お互いにカードを山札から２枚ずつ引く
     drowCards('myHands')
     drowCards('oppHands')
-  }, [shuffledCards])
+  }, [])
 
   return (
     <div>
       <div className="pt-18">
         <div>
           <div className="text-center text-2xl font-bold">相手の手札</div>
-          <Player />
+          <Player handInfos={oppHands} />
           <div className="text-center mt-4">現在の合計値（相手）:{}</div>
           <div className="text-center mt-4 text-xl">勝ち</div>
         </div>
@@ -69,7 +70,7 @@ export default function Home() {
 
         <div className="mt-4">
           <div className="text-center text-2xl font-bold">自分の手札</div>
-          <Player />
+          <Player handInfos={myHands} />
           <div className="text-center mt-4">現在の合計値（自分）:{}</div>
           <div className="text-center mt-4 text-xl">勝ち</div>
           <div className="flex justify-center py-4">
