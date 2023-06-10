@@ -19,6 +19,8 @@ export default function Home() {
   const [oppHands, setOppHands] = useState<
     { mark: string; score: number; image: string }[]
   >([])
+  // ゲームが開始されているかどうかの状態を管理
+  const [isStartedGame, setStartedGame] = useState(false)
 
   const startGame = () => {
     const drowCards = (who: string) => {
@@ -37,6 +39,7 @@ export default function Home() {
     // お互いにカードを山札から２枚ずつ引く
     drowCards('myHands')
     drowCards('oppHands')
+    setStartedGame(!isStartedGame)
   }
 
   const resetGame = () => {
@@ -45,7 +48,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="pt-18">
+      <div className="pt-16 pb-16">
         <div>
           <div className="text-center text-2xl font-bold">相手の手札</div>
           <Player handInfos={oppHands} />
@@ -57,8 +60,13 @@ export default function Home() {
           <div className="flex space-x-4">
             <div>
               <button
-                className="bg-violet-500 text-white py-6 px-8 rounded"
+                className={`bg-violet-500 text-white py-6 px-8 rounded ${
+                  isStartedGame
+                    ? 'disabled:cursor-not-allowed disabled:bg-violet-400'
+                    : ''
+                }`}
                 onClick={startGame}
+                disabled={isStartedGame}
               >
                 ゲームスタート
               </button>
