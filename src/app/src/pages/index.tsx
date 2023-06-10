@@ -56,6 +56,12 @@ export default function Home() {
     return cards.reduce((total, card) => total + card.score, 0)
   }
 
+  const addCard = () => {
+    const drawnCards = shuffledCards.splice(0, 1)
+    setMyHands([...myHands, ...drawnCards])
+    setShuffledCards(shuffledCards)
+  }
+
   return (
     <div>
       <div className="pt-16 pb-16">
@@ -107,7 +113,10 @@ export default function Home() {
           <div className="flex justify-center py-4">
             <div className="flex space-x-4">
               <div>
-                <button className="bg-violet-500 text-white py-6 px-20 rounded">
+                <button
+                  className="bg-violet-500 text-white py-6 px-20 rounded"
+                  onClick={addCard}
+                >
                   追加
                 </button>
               </div>
