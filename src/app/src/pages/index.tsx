@@ -27,6 +27,8 @@ export default function Home() {
   >([])
   // ゲームが開始されているかどうかの状態を管理
   const [isStartedGame, setStartedGame] = useState(false)
+  // 追加ボタンが押されたかどうかの状態を管理
+  const [isAddedCard, setAddedeCard] = useState(false)
 
   const startGame = () => {
     const drowCards = (who: string) => {
@@ -60,6 +62,7 @@ export default function Home() {
     const drawnCards = shuffledCards.splice(0, 1)
     setMyHands([...myHands, ...drawnCards])
     setShuffledCards(shuffledCards)
+    setAddedeCard(!isAddedCard)
   }
 
   return (
@@ -113,9 +116,15 @@ export default function Home() {
           <div className="flex justify-center py-4">
             <div className="flex space-x-4">
               <div>
+                {/* 追加ボタンでゲームをスタートした時にはdisabledでスタートした後はable、押した後はdisabledにしたい */}
                 <button
-                  className="bg-violet-500 text-white py-6 px-20 rounded"
+                  className={`bg-violet-500 text-white py-6 px-20 rounded ${
+                    !isAddedCard
+                      ? 'disabled:cursor-not-allowed disabled:bg-violet-400'
+                      : ''
+                  }`}
                   onClick={addCard}
+                  disabled={!isStartedGame && !isAddedCard}
                 >
                   追加
                 </button>
