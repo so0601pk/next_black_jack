@@ -117,7 +117,6 @@ export default function Home() {
           <div className="flex justify-center py-4">
             <div className="flex space-x-4">
               <div>
-                {/* 追加ボタンでゲームをスタートした時にはdisabledでスタートした後はable、押した後はdisabledにしたい */}
                 <button
                   className={`bg-violet-500 text-white py-6 px-20 rounded ${
                     !isAddedCard
