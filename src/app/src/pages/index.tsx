@@ -48,6 +48,7 @@ export default function Home() {
     drowCards('myHands')
     drowCards('oppHands')
     setStartedGame(!isStartedGame)
+    setAddedeCard(!isAddedCard)
   }
 
   const resetGame = () => {
@@ -124,7 +125,7 @@ export default function Home() {
                       : ''
                   }`}
                   onClick={addCard}
-                  disabled={!isStartedGame && !isAddedCard}
+                  disabled={!isAddedCard}
                 >
                   追加
                 </button>
