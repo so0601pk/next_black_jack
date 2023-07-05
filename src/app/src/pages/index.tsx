@@ -29,8 +29,11 @@ export default function Home() {
   const [isStartedGame, setStartedGame] = useState(false)
   // 追加ボタンが押されたかどうかの状態を管理
   const [isAddedCard, setAddedeCard] = useState(false)
+  // 自分が勝負に勝ったかどうかの状態を管理
+  const [isWinner, setWinner] = useState<number>()
 
   const startGame = () => {
+    console.log(isWinner)
     const drowCards = (who: string) => {
       const drawnCards = shuffledCards.splice(0, 2)
       if (who === 'myHands') {
@@ -66,6 +69,18 @@ export default function Home() {
     setAddedeCard(!isAddedCard)
   }
 
+  const compareEachOtherHand = () => {
+    const myHand = myHands
+    const oppHand = oppHands
+    if (myHand > oppHand) {
+      setWinner(1)
+    } else if (myHand === oppHand) {
+      setWinner(2)
+    } else {
+      setWinner(0)
+    }
+  }
+
   return (
     <div>
       <div className="pt-16 pb-16">
@@ -75,7 +90,15 @@ export default function Home() {
           <div className="text-center mt-4 text-xl">
             現在の合計値（相手）:{getTotalscore(oppHands)}
           </div>
-          <div className="text-center mt-4 text-xl">勝ち</div>
+          {isWinner === 1 && (
+            <div className="text-center mt-4 text-xl">負け</div>
+          )}
+          {isWinner === 0 && (
+            <div className="text-center mt-4 text-xl">勝ち</div>
+          )}
+          {isWinner === 2 && (
+            <div className="text-center mt-4 text-xl">引き分け</div>
+          )}
         </div>
 
         <div className="flex justify-center mt-4">
@@ -113,7 +136,15 @@ export default function Home() {
           <div className="text-center mt-4 text-xl">
             現在の合計値（自分）:{getTotalscore(myHands)}
           </div>
-          <div className="text-center mt-4 text-xl">勝ち</div>
+          {isWinner === 1 && (
+            <div className="text-center mt-4 text-xl">勝ち</div>
+          )}
+          {isWinner === 0 && (
+            <div className="text-center mt-4 text-xl">負け</div>
+          )}
+          {isWinner === 2 && (
+            <div className="text-center mt-4 text-xl">引き分け</div>
+          )}
           <div className="flex justify-center py-4">
             <div className="flex space-x-4">
               <div>
@@ -130,7 +161,10 @@ export default function Home() {
                 </button>
               </div>
               <div>
-                <button className="bg-violet-500 text-white py-6 px-14 rounded">
+                <button
+                  className="bg-violet-500 text-white py-6 px-14 rounded"
+                  onClick={compareEachOtherHand}
+                >
                   追加しない
                 </button>
               </div>
